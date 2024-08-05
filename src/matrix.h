@@ -14,6 +14,8 @@
 
 #define _equality_eps 1e-7
 
+#include <initializer_list>
+
 class Matrix {
  private:
   int rows_;
@@ -32,6 +34,7 @@ class Matrix {
   Matrix(const int rows, const int cols);
   Matrix(const Matrix& other);
   Matrix(Matrix&& other);
+  Matrix(const std::initializer_list<std::initializer_list<double>>);
   ~Matrix();
 
   int getCols() const;

@@ -36,6 +36,30 @@ Matrix::Matrix(const Matrix& src) : matrix_(nullptr) { *this = src; }
 
 Matrix::Matrix(Matrix&& src) : matrix_(nullptr) { *this = std::move(src); }
 
+std::size_t inline getMaxElementSize(
+    const std::initializer_list<std::initializer_list<double>>& list) {
+  std::size_t maxS = 0;
+  for (const auto& current : list) {
+    if (current.size() > maxS) {
+      maxS = current.size();
+    }
+  }
+  return maxS;
+}
+
+Matrix::Matrix(const std::initializer_list<std::initializer_list<double>> list)
+    : Matrix(list.size(), getMaxElementSize(list)) {
+  std::size_t current_row = 0;
+  for (const auto& current_sublist : list) {
+    std::size_t current_col = 0;
+    for (const auto& current_element : current_sublist) {
+      (*this)(current_row, current_col) = current_element;
+      ++current_col;
+    }
+    ++current_row;
+  }
+}
+
 int Matrix::getCols() const { return cols_; }
 
 int Matrix::getRows() const { return rows_; }
