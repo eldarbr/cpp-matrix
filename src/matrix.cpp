@@ -1,12 +1,12 @@
 /*
  * Matrix
- * 
+ *
  * This library implements the matrix
  * data type and math operations with it
- * 
+ *
  * Copyright:
  * Eldar dougiela Bagirov
- * 
+ *
  */
 
 #include "matrix.h"
@@ -34,9 +34,7 @@ Matrix::~Matrix() { _freeMatrix(matrix_); }
 
 Matrix::Matrix(const Matrix& src) : matrix_(nullptr) { *this = src; }
 
-Matrix::Matrix(Matrix&& src) : matrix_(nullptr) {
-  *this = std::move(src);
-}
+Matrix::Matrix(Matrix&& src) : matrix_(nullptr) { *this = std::move(src); }
 
 int Matrix::getCols() const { return cols_; }
 
@@ -159,8 +157,7 @@ Matrix Matrix::CalcComplements() const {
   return result;
 }
 
-double Matrix::getMinor(const int excluded_row,
-                           const int excluded_col) const {
+double Matrix::getMinor(const int excluded_row, const int excluded_col) const {
   if (rows_ != cols_) {
     throw std::invalid_argument(
         "the matrix should be square for minor to be calculated");
@@ -242,8 +239,7 @@ double Matrix::modifyingDeterminant() {
   return result;
 }
 
-double Matrix::_getMatrixElementForDeterminant(const int r,
-                                                  const int c) const {
+double Matrix::_getMatrixElementForDeterminant(const int r, const int c) const {
   double element = 0.;
   if (r < 0 || c < 0) {
     element = 1.;
@@ -296,13 +292,9 @@ Matrix Matrix::operator*(const double num) {
   return result;
 }
 
-bool Matrix::operator==(const Matrix& other) const {
-  return EqMatrix(other);
-}
+bool Matrix::operator==(const Matrix& other) const { return EqMatrix(other); }
 
-bool Matrix::operator!=(const Matrix& other) const {
-  return !EqMatrix(other);
-}
+bool Matrix::operator!=(const Matrix& other) const { return !EqMatrix(other); }
 
 Matrix& Matrix::operator=(const Matrix& other) {
   if (this != &other) {
