@@ -64,8 +64,6 @@ int Matrix::getCols() const { return cols_; }
 
 int Matrix::getRows() const { return rows_; }
 
-double* Matrix::getMatrixPtr() { return matrix_; }
-
 void Matrix::setCols(const int new_c) {
   if (new_c) {
     Matrix new_m(rows_, new_c);
@@ -91,8 +89,6 @@ void Matrix::setRows(const int new_r) {
     cols_ = 0;
   }
 }
-
-void Matrix::setMatrixPtr(double* matrix) { this->matrix_ = matrix; }
 
 bool Matrix::EqMatrix(const Matrix& other) const {
   bool equal = true;
@@ -340,8 +336,8 @@ Matrix& Matrix::operator=(Matrix&& src) {
     _freeMatrix(matrix_);
     rows_ = src.getRows();
     cols_ = src.getCols();
-    matrix_ = src.getMatrixPtr();
-    src.setMatrixPtr(nullptr);
+    matrix_ = src.matrix_;
+    src.matrix_ = nullptr;
     src.setCols(0);
     src.setRows(0);
   }

@@ -304,11 +304,9 @@ TEST(move, successful) {
   m2(1, 1) = -15;
 
   Matrix r1(std::move(m1));
-  EXPECT_EQ(m1.getMatrixPtr(), nullptr);
   EXPECT_EQ(r1(5, 0), 10);
 
   EXPECT_NO_THROW(r1 = std::move(m2));
-  EXPECT_EQ(m2.getMatrixPtr(), nullptr);
   EXPECT_EQ(r1(5, 0), 0);
   EXPECT_EQ(r1(1, 1), -15);
 }

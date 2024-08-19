@@ -39,10 +39,8 @@ class Matrix {
 
   int getCols() const;
   int getRows() const;
-  double* getMatrixPtr();
   void setCols(const int newCols);
   void setRows(const int newRows);
-  void setMatrixPtr(double* newBuff);
 
   bool EqMatrix(const Matrix&) const;
   void SumMatrix(const Matrix&);
